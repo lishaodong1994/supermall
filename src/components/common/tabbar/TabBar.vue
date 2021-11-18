@@ -12,6 +12,7 @@ export default {
  #tab-bar{
 		display: flex;
     position:fixed;
+    z-index: 200;
     bottom: 0;
     left: 0;
     width: 100%;

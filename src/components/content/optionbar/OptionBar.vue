@@ -3,7 +3,7 @@
     <li
       v-for="(item, index) in option"
       :key="index"
-      @click="currentIndex = index"
+      @click="optionClick(index)"
     >
       <span :class="{ active: currentIndex === index }">{{ item }}</span>
     </li>
@@ -24,6 +24,12 @@ export default {
       currentIndex: 0,
     };
   },
+  methods:{
+    optionClick(index){
+      this.currentIndex = index
+      this.$emit('changeContent',index)
+    }
+  }
 };
 </script>
 <style scoped>

@@ -1,4 +1,4 @@
-import http from '@/common/util/http'
+import http from '@/util/http'
 
 export function getHomeMultidata(){
     return http({
