@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <NavBar>
-    </NavBar>
+    
     <MainTabBar></MainTabBar> 
     <router-view></router-view>
   </div>
@@ -9,12 +8,12 @@
 
 <script>
 import MainTabBar from '@/components/common/MainTabBar'
-import NavBar from '@/components/content/navbar/NavBar'
+
 export default {
   name: 'App',
   components: {
    MainTabBar,
-   NavBar
+  
   }
 }
 </script>
