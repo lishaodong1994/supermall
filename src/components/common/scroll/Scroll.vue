@@ -44,22 +44,28 @@ export default {
     });
     this.$nextTick(() => {
       //BS的on方法用于监听事件，probeType值为3才能开启监听。
-      this.scroll.on("scroll", (position) => {
-        //监听滚动事件
-        this.$emit("scrollevent", position);
-      });
-      this.scroll.on("pullingUp", () => {
-        this.$emit('loadMore')
-      });
+      if (this.probeType === 2 || this.probeType === 3) {
+        this.scroll.on("scroll", (position) => {//监听滚动事件
+          this.$emit("scrollevent", position);
+        });
+      }
+      if (this.pullUpLoad) {//监听上拉加载事件
+        this.scroll.on("pullingUp", () => {
+          this.$emit("loadMore");
+        });
+      }
     });
   },
   methods: {
     goTop(x = 0, y = 0, time = 500) {
-      this.scroll.scrollTo(x, y, time);
+      this.scroll && this.scroll.scrollTo(x, y, time); //确保scroll对象已经挂载了才能触发他身上的方法！
     },
-    finishPullUp(){
-      this.scroll.finishPullUp()
-    }
+    finishPullUp() {
+      this.scroll && this.scroll.finishPullUp();
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh();
+    },
   },
 };
 </script>

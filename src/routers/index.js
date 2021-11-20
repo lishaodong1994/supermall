@@ -16,6 +16,7 @@ const Home = ()=>import('views/home')
 const Cart = ()=>import('views/cart')
 const Category = ()=>import('views/category')
 const Profile = ()=>import('views/profile')
+const Detail = ()=>import('views/detail')
 
 const routes = [
     {
@@ -38,6 +39,10 @@ const routes = [
     {
         path:'/profile',
         component:Profile
+    },
+    {
+        path:'/detail',
+        component:Detail
     }
 ]
 

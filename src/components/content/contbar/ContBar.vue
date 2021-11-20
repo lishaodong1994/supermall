@@ -1,7 +1,7 @@
 <template>
     <div class="content_bar">
         <!--error: Duplicate keys detected, key重复而报错,用不同的key就行了。 -->
-        <cont-bar-item v-for="item in content" :key="item.iid" :itemdata="item"/>
+        <cont-bar-item v-for="(item,index) in content" :key="item.iid+index" :itemdata="item"/>
     </div>    
 </template>
 <script>
