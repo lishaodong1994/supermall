@@ -24,7 +24,7 @@
       <ContBar :content="list" ref="ContBar"></ContBar>
     </Scroll>
       <DetailBottomBar @showPopup="showPopup"></DetailBottomBar>
-      <DetailPopup ref="detailPopup"></DetailPopup>
+      <DetailPopup ref="detailPopup" :popupData="popupData"></DetailPopup>
       <BackTop @click.native="backClick" v-show="backtop_isShow"></BackTop>
   </div>
 </template>
@@ -62,6 +62,7 @@ export default {
       debounce_F_getOffsetY: null,
       currentIndex: "",
       eventLock: true,
+      popupData:{},
     };
   },
   components: {
@@ -103,6 +104,13 @@ export default {
     const { data: res2 } = await getRecommend();
     //console.log(res2.list);
     this.list = res2.list;
+
+    let popup = {}
+    popup.image = this.banner[0]
+    popup.explan = this.goods.title
+    popup.price = this.goods.newPrice
+    popup.iid = this.$route.query.iid
+    this.popupData = popup
 
     // 获取各个元素的offset高度用于位置位置
     // this.$nextTick(()=>{

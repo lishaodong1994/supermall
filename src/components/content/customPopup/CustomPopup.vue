@@ -1,10 +1,15 @@
 <template>
   <div>
     <!-- 弹出层 -->
-    <div :class="{ CustomPopup: showCustomPopup }" @click="maskClick"></div>
-    <div class="CustomPopupContent"
+    <div :class="{ CustomPopup: showCustomPopup }" @click="maskClick" 
+    @touchmove="aaa" >
+    </div>
+    <div
+      class="CustomPopupContent"
       :class="{ CustomPopupContentShow: showCustomPopup }"
+      @touchmove="aaa"
     >
+      <div class="close" @click="maskClick">x</div>
       <slot name="PoperContent"></slot>
     </div>
   </div>
@@ -24,6 +29,10 @@ export default {
     maskClick() {
       this.showCustomPopup = false;
     },
+    aaa(e){
+      // e.stopPropagation()//阻止冒泡
+      e.preventDefault()//阻止默认事件，防止影响父组件的touchmove事件
+    }
   },
 };
 </script>
@@ -48,10 +57,16 @@ export default {
   width: 100%;
   transition: all 0.3s ease;
   transform: translateY(100%);
+  opacity: 0;
   z-index: 3000;
 }
-
+.close{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 .CustomPopupContentShow {
   transform: translateY(0);
+  opacity: 1;
 }
 </style>
