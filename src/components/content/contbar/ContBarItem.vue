@@ -1,6 +1,10 @@
 <template>
-  <div class="content_bar_item" @click="itemClick(itemdata.iid)">
-    <img :src="itemdata.show.img" alt="" @load="imagesLoad" />
+  <div
+    class="content_bar_item"
+    @click="itemClick(itemdata.iid || itemdata.shop_id)"
+    v-if="Object.keys(itemdata).length !== 0"
+  >
+    <img :src="c_showImg" alt="" @load="imagesLoad" />
     <div class="content_bar_item_info">
       <p>{{ itemdata.title }}</p>
       <span class="price">{{ itemdata.price }}</span
@@ -18,10 +22,23 @@ export default {
       },
     },
   },
+  computed: {
+    c_showImg() {
+      return this.itemdata.show?.img || this.itemdata.image;
+    },
+  },
+  //监听路由的变化，解决同一页面无法跳转不同query的情况。//但实际存在BUG
+  //   watch: {
+  //     '$route' (to, from) {
+  //         this.$router.go(0);
+  //     }
+  // },
   methods: {
     imagesLoad() {
       //事件总线：触发事件
-      this.$bus1.$emit("itemImageLoad");
+      if (this.$route.path.indexOf("/home") !== -1) {
+        this.$bus1.$emit("itemImageLoad");
+      }
     },
     itemClick(i) {
       this.$router.push({ path: "/detail", query: { iid: i } });

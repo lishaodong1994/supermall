@@ -5,7 +5,7 @@
       <div class="price">
         <b>{{ goods.newPrice }}</b
         ><span>{{ goods.oldPrice }}</span
-        ><i>{{ goods.discount }}</i>
+        ><i v-show="goods.discount">{{ goods.discount }}</i>
       </div>
     </div>
     <div class="tip" v-if="goods.columns">
@@ -80,16 +80,16 @@ export default {
   border-bottom: #ddd solid 1px;
 }
 .services {
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 6px;
   height: 60px;
   align-items: center;
   border-bottom: 4px solid rgb(235, 234, 234);
 }
 .services > span > img {
-  width: 13px;
+  width: 10px;
   vertical-align: -1px;
   margin-right: 2px;
 }

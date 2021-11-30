@@ -12,7 +12,7 @@
         v-for="(item, index) in titleMessage"
         :key="index"
         :class="{ active: currentIndex === index }"
-        @click="currentIndex=index"
+        @click="itemClick(index)"
       >
         {{ item }}
       </span>
@@ -38,6 +38,12 @@ export default {
   components: {
     NavBar,
   },
+  methods:{
+    itemClick(i){
+      this.currentIndex = i
+      this.$emit('changeTop',i)
+    }
+  }
 };
 </script>
 <style scpoed>

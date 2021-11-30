@@ -48,9 +48,10 @@ import ContBar from "@/components/content/contbar/ContBar";
 import BackTop from "@/components/content/backTop/BackTop";
 
 import { getHomeMultidata, getContentData } from "API/home.js";
-import { debounce } from "@/util/util.js";
 import Scroll from "@/components/common/scroll/Scroll.vue";
+import {itemListenerMixin,backTopMixin} from '@/util/mixin.js'
 export default {
+  mixins:[itemListenerMixin,backTopMixin],
   data() {
     return {
       banner: [],
@@ -63,10 +64,10 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      backtop_isShow: false,
       top: 0,
       optionbar_isfixed: false,
       saveY: 0,
+      
     };
   },
   components: {
@@ -85,13 +86,7 @@ export default {
     this.getOptionContentData("new");
     this.getOptionContentData("sell");
 
-    const de_refresh = debounce(this.$refs.scroll.refresh, 500);
-    //事件总线：开启事件，监听itemImageLoad事件的触发
-    this.$bus1.$on("itemImageLoad", () => {
-      //this.$refs.scroll.refresh(); //图片加载完$emit一个事件，这就监听到触发刷新scroll
-      //(问题：图片加载太多，事件触发太频繁，bs刷新太频繁没有必要。最好进行防抖debounce处理或节流throttle。)
-      de_refresh(); //使用‘包装了防抖’的函数，优化最好是基本完成时再做性能优化。
-    });
+    
 
     //为了做optionbar吸顶效果,就到拿到它的offsetTop位置,但是：
     //我们发现拿到值并不正确：因为图片异步加载进来的缘故，取到的值是图片进来之前的。。。
@@ -106,6 +101,7 @@ export default {
     // 低版本的bs会有不能保持之前位置的情况。可以在离开时保存一个saveY位置值，在进入这个路由组件时将位置设置成
     //原来保存的位置saveY即可。
     console.log("组件销毁了");
+
   },
   // bs旧版本添加：activate组件激活时,deactivate组件离开时 keep-active下可以使用。
   activated() {
@@ -148,9 +144,7 @@ export default {
       this.$refs.OptionBar1.currentIndex = i;
       this.$refs.OptionBar2.currentIndex = i;
     },
-    backClick() {
-      this.$refs.scroll.goTop();
-    },
+   
     setBtShow(position) {
       //gotop按钮是否隐藏
       this.backtop_isShow = -position.y > 1000;

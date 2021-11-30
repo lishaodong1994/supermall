@@ -38,7 +38,7 @@ export default {
 </script>
 <style scoped>
 .swiper {
-  height: 300px;
+  height: 400px;
   overflow: hidden;
 }
 .swiper_item {
@@ -50,7 +50,7 @@ export default {
   width: 100%;
   display: block;
   position: absolute;
-  top: -40%;
+  top: -10%;
 
   /* 图片自动保存宽高比适应：
    width: auto;
