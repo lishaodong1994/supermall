@@ -1,5 +1,5 @@
 <template>
-  <CustomPopup ref="popup" >
+  <CustomPopup ref="popup" v-if="Object.keys(popupData).length!==0">
     <div slot="PoperContent">
       <div class="content">
         <div class="info">
@@ -38,7 +38,7 @@ export default {
   methods: {
     //显示购物车弹出框
     showCartPopup() {
-      this.$refs.popup.showCustom();
+      this.$refs.popup&&this.$refs.popup.showCustom();
     },
     decrement(){
       this.count>1&&this.count--
@@ -47,7 +47,7 @@ export default {
       this.count++
     },
     addCart(pld){
-      let paload ={...pld,count:this.count}
+      let paload ={...pld,count:this.count,checked:false}
       //console.log('添加到购物车',paload);
       this.$store.dispatch('addcart',paload)
     }

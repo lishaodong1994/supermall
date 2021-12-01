@@ -1,7 +1,7 @@
 <template>
   <swiper
     swiperName="detailSwiper1"
-    :loop="true"
+    :loop="banner.length>1"
     paginationType="fraction"
     v-if="banner.length"
     class="swiper"

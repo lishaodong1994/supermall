@@ -26,4 +26,15 @@ export default {
 
 <style>
 @import "assets/css/base.css";
+@import "assets/icon/iconfont.css";
+/* vue中checkbox,radio的input不显示：用以下重置css*/
+input[type="checkbox"],
+ input[type="radio"]{
+  background-color: initial;
+  cursor: default;
+  appearance: checkbox;
+  box-sizing: border-box;
+  padding: initial;
+  border: initial;
+}
 </style>
