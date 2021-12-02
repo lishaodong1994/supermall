@@ -69,6 +69,7 @@ export default {
 }
 .content .info img {
   width: 80px;
+  height: 120px;
   position: relative;
   top: -60px;
 }

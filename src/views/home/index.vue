@@ -162,7 +162,7 @@ export default {
     },
 
     swiperImageLoad() {
-      this.top = this.$refs.OptionBar2.$el.offsetTop;
+      this.top = this.$refs.OptionBar2.$el.offsetTop+58;
       //console.log(this.top);//601
     },
   },

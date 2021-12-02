@@ -19,11 +19,11 @@ export default {
   data() {
     return {};
   },
-  methods:{
-    addCart(){
-      this.$emit('showPopup')
-    }
-  }
+  methods: {
+    addCart() {
+      this.$emit("showPopup");
+    },
+  },
 };
 </script>
 
@@ -31,7 +31,9 @@ export default {
 .detailBottomBar {
   width: 100%;
   height: 49px;
-  position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   display: flex;
   font-size: 16px;
   background-color: #fff;
@@ -61,8 +63,8 @@ export default {
   flex-basis: 90px;
   background-color: tomato;
 }
-.cart{
-    background-color:rgba(197, 230, 53, 0.959);
-    color:#333
+.cart {
+  background-color: rgba(197, 230, 53, 0.959);
+  color: #333;
 }
 </style>

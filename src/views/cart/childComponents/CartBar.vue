@@ -30,7 +30,11 @@ export default {
 .cartBar {
   padding: 0px 0px 0px 15px;
   background-color: #ddd;
+  position: fixed;
+  left: 0;
+  bottom: 49px;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   color: #333;
