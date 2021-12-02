@@ -7,7 +7,7 @@
       <span class="allchecktext">全选</span>
     </div>
     <div class="allprice">总价：￥{{ allPrice.toFixed(2) }}</div>
-    <div class="buy">去结算({{checkedLength}})</div>
+    <div class="buy" @click="buygoods">去结算({{checkedLength}})</div>
   </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
   },
   methods: {
     ...mapActions(["changeAllCheck"]),
+    buygoods(){
+      this.$toast.show('目前无法购买~');
+    }
   },
 };
 </script>

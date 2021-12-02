@@ -49,7 +49,9 @@ export default {
     addCart(pld){
       let paload ={...pld,count:this.count,checked:false}
       //console.log('添加到购物车',paload);
-      this.$store.dispatch('addcart',paload)
+      this.$store.dispatch('addcart',paload).then( goodsToast=> {
+        this.$toast.show(goodsToast);
+      })
     }
   },
 };
